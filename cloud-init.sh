@@ -1,3 +1,4 @@
+#cloud-config
 groups:
   - ubuntu: [root,sys]
   - cloud-users
@@ -7,7 +8,6 @@ users:
     gecos: New Relic Candidate
     expiredate: ${pw_expiration}
     passwd: ${password}
-package_update: true
 package_upgrade: true
 packages:
   - maven
