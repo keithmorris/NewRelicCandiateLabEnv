@@ -34,7 +34,7 @@
 ```
 subscription_id = "<Azure Subscription ID>"
 tenant_id = "<Azure Tenant ID"
-expiration = "YYY-MM-DD"  //Date you want the candidates user account on the VM to expire
+expiration = "YYYY-MM-DD"  //Date you want the candidates user account on the VM to expire
 password = "<Password for candidate>"  // i.e. AVeryLongPassword
 candidate_name = "<Name>" //No spaces allowed; used to namespace Azure resources from other candidates
 ```
