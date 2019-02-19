@@ -84,7 +84,7 @@ resource "azurerm_network_security_group" "app-ext-nsg" {
 }
 
 resource "azurerm_storage_account" "stor" {
-  name                     = "${local.cname}nrcandidateazstore"
+  name                     = "${local.cname}az"
   location                 = "${var.location}"
   resource_group_name      = "${azurerm_resource_group.rg.name}"
   account_tier             = "${var.storage_account_tier}"

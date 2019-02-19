@@ -38,14 +38,15 @@ expiration = "YYYY-MM-DD"  //Date you want the candidates user account on the VM
 password = "<Password for candidate>"  // i.e. AVeryLongPassword
 candidate_name = "<Name>" //No spaces allowed; used to namespace Azure resources from other candidates
 ```
-5. Run `terraform plan -out tf.plan`.  
-6. Once the plan is created, run `terraform apply tf.plan` to apply the scripts.  It should take 5-10 minutes to create the entire environment
-7. Once complete, there should be 3 Outputs listed for the candidate to access the VM
+5. Run `terraform init` to install the Terraform Azure provider
+6. Run `terraform plan -out tf.plan`.  
+7. Once the plan is created, run `terraform apply tf.plan` to apply the scripts.  It should take 5-10 minutes to create the entire environment
+8. Once complete, there should be 3 Outputs listed for the candidate to access the VM
 ```
 app_dns = <prefix>.westus.cloudapp.azure.com
 vm_password = <password>
 vm_username = <username>
 ```
-8. The candiate can then log into the VM using `ssh <vm_username>@<app_dns>`
-9. You can login yourself under the default admin account (`myadmin`) using your existing SSH key: `ssh myadmin@<app_dns>`
-10. To destroy the environment after the lab is complete, use `terraform destroy -auto-approve`
+9. The candiate can then log into the VM using `ssh <vm_username>@<app_dns>`
+10. You can login yourself under the default admin account (`myadmin`) using your existing SSH key: `ssh myadmin@<app_dns>`
+11. To destroy the environment after the lab is complete, use `terraform destroy -auto-approve`
