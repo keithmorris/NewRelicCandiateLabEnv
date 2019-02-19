@@ -4,7 +4,7 @@
 ### Prerequisites
 
 1. [Terraform](https://www.terraform.io/downloads.html) installed
-2. [Azure command line](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) (i.e. az) installed
+2. [Azure command line](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) (i.e. `az`) installed
 3. [Logged into your azure account](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli?view=azure-cli-latest) in the cli:  `az login`
 4. Valid default SSH key pair (i.e. `id_rsa` and `id_rsa.pub`) located in your user ssh directory (i.e. `~/.ssh`)
 
@@ -36,8 +36,9 @@ subscription_id = "<Azure Subscription ID>"
 tenant_id = "<Azure Tenant ID"
 expiration = "YYY-MM-DD"  //Date you want the candidates user account on the VM to expire
 password = "<Password for candidate>"  // i.e. AVeryLongPassword
+candidate_name = "<Name>" //No spaces allowed; used to namespace Azure resources from other candidates
 ```
-5. Run `terraform plan -out tf.plan`.  It will ask you for a candidate name.  This will be used to namespace the Azure resource group and resources from other candidates
+5. Run `terraform plan -out tf.plan`.  
 6. Once the plan is created, run `terraform apply tf.plan` to apply the scripts.  It should take 5-10 minutes to create the entire environment
 7. Once complete, there should be 3 Outputs listed for the candidate to access the VM
 ```
