@@ -48,3 +48,4 @@ vm_username = <username>
 ```
 8. The candiate can then log into the VM using `ssh <vm_username>@<app_dns>`
 9. You can login yourself under the default admin account (`myadmin`) using your existing SSH key: `ssh myadmin@<app_dns>`
+10. To destroy the environment after the lab is complete, use `terraform destroy -auto-approve`
