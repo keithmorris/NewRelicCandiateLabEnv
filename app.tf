@@ -4,6 +4,8 @@ data "template_file" "could-init" {
         pw_expiration = "${var.expiration}"
         username = "${var.username}"
         ssh_key = "${file("ese_rsa.pub")}"
+        create = "${azurerm_storage_blob.create.url}"
+        salesmanager = "${azurerm_storage_blob.salesmanager.url}"
     }
 }
 
@@ -64,23 +66,5 @@ resource "azurerm_virtual_machine" "app" {
     boot_diagnostics {
         enabled     = true
         storage_uri = "${azurerm_storage_account.stor.primary_blob_endpoint}"
-    }
-
-    connection {
-        type            = "ssh"
-        user            = "${var.admin_username}"        
-        host            = "${azurerm_public_ip.app-pip.fqdn}"
-        private_key     = "${file("ese_rsa")}"
-        timeout         = "5m"
-    }
-
-    provisioner "file" {
-        source      = "create.sql"
-        destination = "/tmp/create.sql"
-    }
-
-    provisioner "file" {
-        source      = "SALESMANAGER.sql"
-        destination = "/tmp/SALESMANAGER.sql"
     }
 }

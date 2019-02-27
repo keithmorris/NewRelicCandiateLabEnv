@@ -103,3 +103,34 @@ resource "azurerm_storage_account" "stor" {
   account_tier             = "${var.storage_account_tier}"
   account_replication_type = "${var.storage_replication_type}"
 }
+
+resource "azurerm_storage_container" "files" {
+  name                  = "files"
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  storage_account_name  = "${azurerm_storage_account.stor.name}"
+  container_access_type = "container"
+}
+
+resource "azurerm_storage_blob" "create" {
+  name = "create.sql"
+
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  storage_account_name  = "${azurerm_storage_account.stor.name}"
+  storage_container_name = "${azurerm_storage_container.files.name}"
+
+  type = "block"
+
+  source = "./create.sql"
+}
+
+resource "azurerm_storage_blob" "salesmanager" {
+  name = "salesmanager.sql"
+
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  storage_account_name  = "${azurerm_storage_account.stor.name}"
+  storage_container_name = "${azurerm_storage_container.files.name}"
+
+  type = "block"
+
+  source = "./SALESMANAGER.sql"
+}

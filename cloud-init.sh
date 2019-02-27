@@ -32,7 +32,9 @@ runcmd:
   - iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
   - netfilter-persistent save
   - git clone https://github.com/nrcandidatelab/ShopizerJavaApp /opt/Shopizer
+  - curl -o /tmp/create.sql ${create}
   - mysql < /tmp/create.sql
+  - curl -o /tmp/SALESMANAGER.sql ${salesmanager}
   - mysql SALESMANAGER < /tmp/SALESMANAGER.sql
   - (cd /opt/Shopizer && mvn clean install)
   - cp /opt/Shopizer/sm-shop/target/ROOT.war /opt/tomcat/webapps/
