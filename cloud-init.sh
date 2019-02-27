@@ -27,7 +27,7 @@ runcmd:
   - chmod g+x /opt/tomcat/conf
   - chown -R tomcat /opt/tomcat/webapps /opt/tomcat/work /opt/tomcat/temp /opt/tomcat/logs
   - iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
-  - git clone https://github.com/nrcandidatelab/ShopizerJavaApp /tmp/Shopizer
-  - cd /tmp/Shopizer
+  - git clone https://github.com/nrcandidatelab/ShopizerJavaApp /opt/Shopizer
+  - cd /opt/Shopizer
   - reboot
   
