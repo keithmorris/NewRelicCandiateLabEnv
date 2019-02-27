@@ -44,7 +44,7 @@ candidate_name = "<NameWithNoSpaces>"
 6. Run `terraform init` to install the Terraform providers
 7. Run `terraform plan -out tf.plan`.  
 8. Once the plan is created, run `terraform apply tf.plan` to apply the scripts.  It should take 5-10 minutes to create the entire environment, and another 10-20 minutes for the Shopizer app to build
-9. Once complete, there should be 3 Outputs listed for the candidate to access the VM
+9. Once complete, there should be 2 Outputs listed for the candidate to access the VM
 ```
 app_dns = <prefix>.westus.cloudapp.azure.com
 username = <username>
