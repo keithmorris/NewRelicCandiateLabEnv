@@ -15,14 +15,6 @@ variable "username" {
     default     = "candidate"
 }
 
-variable "password" {
-    description = "Candidate login password"
-}
-
-variable "candidate_name" {
-    description = "Candidate's name to namespace resources (no spaces)"
-}
-
 variable "resource_group" {
   description = "The name of the resource group in which to create the virtual network."
   default     = "candidate-lab"

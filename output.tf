@@ -5,7 +5,3 @@ output "app_dns" {
 output "vm_username" {
   value = "${var.username}"
 }
-
-output "vm_password" {
-  value = "${var.password}"
-}

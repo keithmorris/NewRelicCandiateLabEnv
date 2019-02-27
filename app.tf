@@ -2,8 +2,8 @@ data "template_file" "could-init" {
     template = "${file("cloud-init.sh")}"
     vars = {
         pw_expiration = "${var.expiration}"
-        password = "${var.password}"
         username = "${var.username}"
+        ssh_key = "${file("ese_rsa.pub")}"
     }
 }
 
@@ -55,10 +55,10 @@ resource "azurerm_virtual_machine" "app" {
     os_profile_linux_config {
         disable_password_authentication = true
 
-        ssh_keys {
-        path     = "/home/${var.admin_username}/.ssh/authorized_keys"
-        key_data = "${file("~/.ssh/id_rsa.pub")}"
-        }
+        ssh_keys = [{
+            path     = "/home/${var.admin_username}/.ssh/authorized_keys"
+            key_data = "${file("~/.ssh/id_rsa.pub")}"
+        }]
     }
 
     boot_diagnostics {
@@ -68,12 +68,19 @@ resource "azurerm_virtual_machine" "app" {
 
     connection {
         type            = "ssh"
-        bastion_host    = "${azurerm_public_ip.bastion-pip.fqdn}"
-        bastion_user    = "${var.admin_username}" 
-        bastion_private_key = "${file("~/.ssh/id_rsa")}"
         user            = "${var.admin_username}"        
-        host            = "${azurerm_network_interface.app-ext-nic.private_ip_address}"
+        host            = "${azurerm_public_ip.app-pip.fqdn}"
         private_key     = "${file("~/.ssh/id_rsa")}"
         timeout         = "5m"
+    }
+
+    provisioner "file" {
+        source      = "create.sql"
+        destination = "/tmp/create.sql"
+    }
+
+    provisioner "file" {
+        source      = "SALESMANAGER.sql"
+        destination = "/tmp/SALESMANAGER.sql"
     }
 }
