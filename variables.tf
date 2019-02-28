@@ -12,7 +12,6 @@ variable "expiration" {
 
 variable "username" {
     description = "Candidate login username"
-    default     = "candidate"
 }
 
 variable "resource_group" {
