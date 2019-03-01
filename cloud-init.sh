@@ -20,6 +20,7 @@ packages:
   - mysql-server
   - iptables-persistent
   - netfilter-persistent
+  - openjdk-8-jdk
 runcmd:
   - (cd /tmp && curl -O http://apache.mirrors.tds.net/tomcat/tomcat-9/v9.0.16/bin/apache-tomcat-9.0.16.tar.gz)
   - mkdir /opt/tomcat
