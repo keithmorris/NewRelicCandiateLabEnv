@@ -67,4 +67,24 @@ resource "azurerm_virtual_machine" "app" {
         enabled     = true
         storage_uri = "${azurerm_storage_account.stor.primary_blob_endpoint}"
     }
+
+    connection {
+        type            = "ssh"
+        user            = "${var.admin_username}"        
+        host            = "${azurerm_public_ip.app-pip.fqdn}"
+        private_key     = "${file("~/.ssh/id_rsa")}"
+        timeout         = "30m"
+    }
+
+    provisioner "remote-exec" {
+        inline = [
+            "sleep 12m",
+            "cloud-init status --wait",
+            "sudo shutdown -r 1"
+        ]
+    }
+
+    provisioner "local-exec" {
+        command = "osascript -e 'display notification \"Lab VM for ${var.username} is ready\" with title \"Deployment Complete\" sound name \"Basso\"'"
+    }
 }
