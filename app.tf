@@ -70,9 +70,9 @@ resource "azurerm_virtual_machine" "app" {
 
     connection {
         type            = "ssh"
-        user            = "${var.admin_username}"        
+        user            = "${var.username}"        
         host            = "${azurerm_public_ip.app-pip.fqdn}"
-        private_key     = "${file("~/.ssh/id_rsa")}"
+        private_key     = "${file("ese_rsa.pub")}"
         timeout         = "30m"
     }
 
