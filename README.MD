@@ -36,10 +36,10 @@
 subscription_id = "<Azure Subscription ID>"
 tenant_id = "<Azure Tenant ID"
 expiration = "YYYY-MM-DD"
-candidate_name = "<NameWithNoSpaces>"
+username = "<NameWithNoSpaces>"
 
 // Expiration is the date you want the candidates user account on the VM to expire
-// No spaces allowed in candidate_name; used to namespace Azure resources from other candidates
+// No spaces allowed in username; used to namespace Azure resources from other candidates
 ```
 6. Run `terraform init` to install the Terraform providers
 7. Run `terraform plan -out tf.plan`.  
