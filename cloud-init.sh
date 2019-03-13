@@ -22,22 +22,11 @@ packages:
   - openjdk-8-jdk
 runcmd:
   - touch /etc/profile.d/00-java.sh
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/etc/profile.d/00-java.sh\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/etc/profile.d/00-java.sh\"
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/etc/profile\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/etc/profile\"
-  - touch /home/tomcat/.bash_profile
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/home/tomcat/.bash_profile\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/home/tomcat/.bash_profile\"
-  - touch /home/tomcat/.bashrc
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/home/tomcat/.bashrc\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/home/tomcat/.bashrc\"
-  - touch /home/${username}/.bash_profile
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/home/${username}/.bash_profile\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/home/${username}/.bash_profile\"
-  - touch /home/${username}/.bashrc
-  - echo \"export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64\" | tee -a \"/home/${username}/.bashrc\"
-  - echo \"export PATH=\$JAVA_HOME/bin:\$PATH\" | tee -a \"/home/${username}/.bashrc\"
+  - echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' | tee -a '/etc/profile.d/00-java.sh'
+  - echo 'export JRE_HOME=/usr/lib/jvm/java-8-openjdk-amd64' | tee -a '/etc/profile.d/00-java.sh'
+  - echo 'export PATH=$JAVA_HOME/bin:$PATH' | tee -a '/etc/profile.d/00-java.sh'
+  - touch /etc/sudoers.d/00-java-home
+  - echo 'Defaults env_keep += "JAVA_HOME JRE_HOME PATH"' | EDITOR='tee -a' visudo -f /etc/sudoers.d/00-java-home
   - (cd /tmp && curl -O http://apache.mirrors.tds.net/tomcat/tomcat-9/v9.0.16/bin/apache-tomcat-9.0.16.tar.gz)
   - mkdir /opt/tomcat
   - tar xzvf /tmp/apache-tomcat-9.0.16.tar.gz -C /opt/tomcat --strip-components=1
