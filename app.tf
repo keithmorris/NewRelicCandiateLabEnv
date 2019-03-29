@@ -6,6 +6,7 @@ data "template_file" "could-init" {
         ssh_key = "${file("ese_rsa.pub")}"
         create = "${azurerm_storage_blob.create.url}"
         salesmanager = "${azurerm_storage_blob.salesmanager.url}"
+        tomcat = "${azurerm_storage_blob.tomcat.url}"
     }
 }
 
@@ -76,14 +77,9 @@ resource "azurerm_virtual_machine" "app" {
         timeout         = "30m"
     }
 
-    provisioner "file" {
-        source      = "apache-tomcat-9.0.17.tar.gz"
-        destination = "/etc/apache-tomcat-9.0.17.tar.gz"
-    }
-
     provisioner "remote-exec" {
         inline = [
-            "cloud-init status --wait 2>&1",
+            "cloud-init status --wait > /dev/null 2>&1",
             "sudo shutdown -r 1"
         ]
     }

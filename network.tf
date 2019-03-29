@@ -134,3 +134,15 @@ resource "azurerm_storage_blob" "salesmanager" {
 
   source = "./SALESMANAGER.sql"
 }
+
+resource "azurerm_storage_blob" "tomcat" {
+  name = "apache-tomcat-9.0.17.tar.gz"
+
+  resource_group_name   = "${azurerm_resource_group.rg.name}"
+  storage_account_name  = "${azurerm_storage_account.stor.name}"
+  storage_container_name = "${azurerm_storage_container.files.name}"
+
+  type = "block"
+
+  source = "./apache-tomcat-9.0.17.tar.gz"
+}

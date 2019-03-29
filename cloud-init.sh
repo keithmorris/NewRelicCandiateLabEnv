@@ -27,6 +27,7 @@ runcmd:
   - echo 'export PATH=$JAVA_HOME/bin:$PATH' | tee -a '/etc/profile.d/00-java.sh'
   - touch /etc/sudoers.d/00-java-home
   - echo 'Defaults env_keep += "JAVA_HOME JRE_HOME PATH"' | EDITOR='tee -a' visudo -f /etc/sudoers.d/00-java-home
+  - curl -o /etc/apache-tomcat-9.0.16.tar.gz ${tomcat}
   - mkdir /opt/tomcat
   - tar xzvf /etc/apache-tomcat-9.0.16.tar.gz -C /opt/tomcat --strip-components=1
   - chgrp -R tomcat /opt/tomcat
