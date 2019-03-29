@@ -43,7 +43,7 @@ resource "azurerm_virtual_machine" "app" {
 
     storage_os_disk {
         name              = "${var.hostname}-app-osdisk"
-        managed_disk_type = "Standard_LRS"
+        managed_disk_type = "Premium_LRS"
         caching           = "ReadWrite"
         create_option     = "FromImage"
     }
