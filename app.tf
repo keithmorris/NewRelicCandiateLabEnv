@@ -76,10 +76,14 @@ resource "azurerm_virtual_machine" "app" {
         timeout         = "30m"
     }
 
+    provisioner "file" {
+        source      = "apache-tomcat-9.0.17.tar.gz"
+        destination = "/etc/apache-tomcat-9.0.17.tar.gz"
+    }
+
     provisioner "remote-exec" {
         inline = [
-            "sleep 12m",
-            "cloud-init status --wait",
+            "cloud-init status --wait 2>&1",
             "sudo shutdown -r 1"
         ]
     }
