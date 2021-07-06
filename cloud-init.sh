@@ -12,7 +12,7 @@ users:
       - ${ssh_key}
   - name: tomcat
     sudo: ALL=(ALL) NOPASSWD:ALL
-package_upgrade: true
+package_upgrade: false
 packages:
   - maven
   - git
