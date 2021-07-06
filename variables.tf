@@ -81,17 +81,17 @@ variable "image_publisher" {
 
 variable "image_offer" {
   description = "the name of the offer (az vm image list)"
-  default     = "UbuntuServer"
+  default     = "0001-com-ubuntu-server-focal"
 }
 
 variable "image_sku" {
   description = "image sku to apply (az vm image list)"
-  default     = "18.04-LTS"
+  default     = "20_04-lts"
 }
 
 variable "image_version" {
   description = "version of the image to apply (az vm image list)"
-  default     = "18.04.202004080"
+  default     = "latest"
 }
 
 variable "admin_username" {
